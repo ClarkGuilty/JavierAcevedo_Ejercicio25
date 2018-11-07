@@ -22,13 +22,8 @@ mkdir -p $TMPDIR
 mkdir -p $OUTDIR
 
 
-
-
-cd $TMPDIR
-git config http.sslVerify false
+# git config http.sslVerify false
 git clone https://github.com/ClarkGuilty/JavierAcevedo_Ejercicio25.git
-
-cd JavierAcevedo_Ejercicio25
 
 module load anaconda/python3
 cp -Rf $TMPDIR/ $OUTDIR/

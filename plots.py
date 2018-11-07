@@ -8,6 +8,8 @@ Created on Sun Nov  4 00:33:14 2018
 
 
 import numpy as np
+import matplotlib
+matploblib.use("Agg")
 import matplotlib.pyplot as plt
 
 def gaussiana(x,mu,sigma):

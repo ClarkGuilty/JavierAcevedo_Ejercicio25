@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#PBS -q batch
+#PBS -N q
+#PBS -l nodes=1:ppn=8:intel
+#PBS -l walltime=:500:00
+#PBS -l mem=28gb
+#PBS -M ja.acevedo12@uniandes.edu.co
+#PBS -m ae
+#PBS -j oe
+#PBS -o out25.log
+
+
+#Crea una carpeta temporal de ejecución, carga los módulos y actualizar el git antes de correr.
+cd $PBS_O_WORKDIR
+
+TMPDIR=/state/partition1/$USER/$PBS_JOBNAME.$PBS_JOBID
+OUTDIR=$PBS_O_WORKDIR/salida
+
+rm -rf $OUTDIR
+mkdir -p $TMPDIR
+mkdir -p $OUTDIR
+
+
+
+
+cd $TMPDIR
+git config http.sslVerify false
+git clone https://github.com/ClarkGuilty/JavierAcevedo_Ejercicio25.git
+
+cd JavierAcevedo_Ejercicio25
+
+module load anaconda/python3
+cp -Rf $TMPDIR/ $OUTDIR/
+make
+
+cd $OUTDIR
+
+# mkdir images
+# mkdir datFiles
+
+
+# mv -f $TMPDIR/CollisionalDarkMatterSimulation/images/ ./images
+# mv -f $TMPDIR/CollisionalDarkMatterSimulation/datFiles/ ./datFiles
+
+rm -rf $TMPDIR
